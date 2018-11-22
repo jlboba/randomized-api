@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
 
 // get all lists for a cohort
 router.get('/cohort/:cohortid', (req, res) => {
-  db.any(sql.listsForCohort, req.params.cohortid)
+  db.any(sql.allForCohort, req.params.cohortid)
     .then((foundLists) => {
       res.json(formatListData(foundLists))
     })
@@ -69,39 +69,25 @@ router.get('/cohort/:cohortid', (req, res) => {
 // get one list by id
 router.get('/:id', (req, res) => {
   db.any(sql.one, req.params.id)
-    .then((foundList) => {
-      res.json(foundList)
+    .then((foundLists) => {
+      res.json(formatListData(foundLists))
     })
     .catch(err => res.send(err))
 })
 
-// create a cohort
-router.post('/', (req, res) => {
-  db.none('INSERT INTO lists(name) VALUES(${name})', req.body)
-    .then((createdCohort) => {
-      res.json(req.body)
-    })
-    .catch(err => res.send(err))
-})
-
-// delete a cohort
+// delete a list
 router.delete('/:id', (req, res) => {
-  db.oneOrNone('DELETE FROM cohorts WHERE id = $1', req.params.id)
+  db.oneOrNone(sql.delete, req.params.id)
     .then((deletedCohort) => {
-      res.json(deletedCohort)
+      db.oneOrNone(sql.deleteJoin, req.params.id)
+        .then((deletedJoin) => {
+          res.json(deletedJoin)
+        })
+        .catch(err => res.send(err))
     })
     .catch(err => res.send(err))
 })
 
-// update a cohort
-router.put('/:id', (req, res) => {
-  db.any('UPDATE cohorts SET name = $1 WHERE id = $2', [req.body.name, req.params.id])
-    .then((updatedCohort) => {
-      console.log(updatedCohort);
-      res.json(updatedCohort)
-    })
-    .catch(err => res.send(err))
-})
 
 // ==============================
 // EXPORT

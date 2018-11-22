@@ -18,7 +18,9 @@ function sql(file) {
 module.exports = {
   lists: {
     all: sql('lists/all.sql'),
-    listsForCohort: sql('lists/listsForCohort.sql'),
-    one: sql('lists/one.sql')
+    allForCohort: sql('lists/allForCohort.sql'),
+    one: sql('lists/one.sql'),
+    delete: sql('lists/delete.sql'),
+    deleteJoin: sql('lists/deleteJoin.sql')
   }
 }
