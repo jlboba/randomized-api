@@ -30,6 +30,16 @@ router.delete('/:id', (req, res) => {
     })
     .catch(err => res.send(err))
 })
+
+// update a student
+router.put('/:id', (req, res) => {
+  db.one(sql.update, [req.params.id, req.body.name, req.body.nickname])
+    .then((updatedStudent) => {
+      res.json(updatedStudent)
+    })
+    .catch(err => res.send(err))
+})
+
 // ==============================
 // EXPORT
 // ==============================
