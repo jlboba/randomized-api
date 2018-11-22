@@ -79,6 +79,7 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   db.oneOrNone(sql.delete, req.params.id)
     .then((deletedCohort) => {
+      // then deletes corresponding join
       db.oneOrNone(sql.deleteJoin, req.params.id)
         .then((deletedJoin) => {
           res.json(deletedJoin)
@@ -93,7 +94,7 @@ router.post('/', (req, res) => {
   db.one(sql.create, [req.body.name, req.body.cohort_id])
     .then((createdList) => {
       req.body.students.forEach((student) => {
-        db.one(sql.createJoin, [createdList.id, student.id, student.subcategory])
+        db.one(sql.createJoin, [createdList.id, student.id, req.body.cohort_id, student.subcategory])
       })
       res.json(createdList)
     })
