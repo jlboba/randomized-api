@@ -22,7 +22,8 @@ module.exports = {
     delete: sql('cohorts/delete.sql'),
     deleteStudents: sql('cohorts/deleteStudents.sql'),
     deleteLists: sql('cohorts/deleteLists.sql'),
-    deleteJoins: sql('cohorts/deleteJoins.sql')
+    deleteJoins: sql('cohorts/deleteJoins.sql'),
+    create: sql('cohorts/create.sql')
   },
   lists: {
     all: sql('lists/all.sql'),

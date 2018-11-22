@@ -67,7 +67,7 @@ router.get('/:id', (req, res) => {
 
 // create a cohort
 router.post('/', (req, res) => {
-  db.none('INSERT INTO cohorts(name) VALUES(${name})', req.body)
+  db.none(sql.create, req.body.name)
     .then((createdCohort) => {
       res.json(req.body)
     })
