@@ -3,7 +3,7 @@
 // ==============================
 const pgp = require('pg-promise')({})
 
-const connection = process.env.DATABSE_URL || {
+const connection = process.env.DATABASE_URL || {
   host     : process.env.HOST,
   port     : process.env.PORT,
   database : 'randomized',
