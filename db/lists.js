@@ -88,6 +88,17 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.send(err))
 })
 
+// create a list
+router.post('/', (req, res) => {
+  db.one(sql.create, [req.body.name, req.body.cohort_id])
+    .then((createdList) => {
+      req.body.students.forEach((student) => {
+        db.one(sql.createJoin, [createdList.id, student.id, student.subcategory])
+      })
+      res.json(createdList)
+    })
+    .catch(err => res.send(err))
+})
 
 // ==============================
 // EXPORT

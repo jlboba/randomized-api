@@ -21,6 +21,8 @@ module.exports = {
     allForCohort: sql('lists/allForCohort.sql'),
     one: sql('lists/one.sql'),
     delete: sql('lists/delete.sql'),
-    deleteJoin: sql('lists/deleteJoin.sql')
+    deleteJoin: sql('lists/deleteJoin.sql'),
+    create: sql('lists/create.sql'),
+    createJoin: sql('lists/createJoin.sql')
   }
 }
