@@ -3,7 +3,8 @@ SELECT
   lists.name AS list_name,
   students.name AS student_name,
   students.nickname AS student_nickname,
-  cohorts.name AS cohort_name
+  cohorts.name AS cohort_name,
+  list_join.subcategory AS subcategory
 FROM lists
 LEFT JOIN list_join
   ON lists.id = list_join.list_id

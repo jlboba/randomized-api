@@ -20,6 +20,7 @@ const createList = (data) => {
 }
 // creates a student
 const createStudent = (data) => {
+  console.log(data);
   return {
     "name": data.student_name,
     "nickname": data.student_nickname,
