@@ -24,7 +24,7 @@ const createStudent = (data) => {
   return {
     "name": data.student_name,
     "nickname": data.student_nickname,
-    "subcategory": data.subcategory
+    "category": data.category
   }
 }
 // format list data
@@ -96,7 +96,7 @@ router.post('/', (req, res) => {
   db.one(sql.create, [req.body.name, req.body.cohort_id])
     .then((createdList) => {
       req.body.students.forEach((student) => {
-        db.one(sql.createJoin, [createdList.id, student.id, req.body.cohort_id, student.subcategory])
+        db.one(sql.createJoin, [createdList.id, student.id, req.body.cohort_id, student.category])
       })
       res.json(createdList)
     })
