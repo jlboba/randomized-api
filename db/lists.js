@@ -22,7 +22,8 @@ const createList = (data) => {
 const createStudent = (data) => {
   return {
     "name": data.student_name,
-    "nickname": data.student_nickname
+    "nickname": data.student_nickname,
+    "subcategory": data.subcategory
   }
 }
 // format list data
