@@ -20,6 +20,7 @@ const createCohort = (data) => {
 // creates a student
 const createStudent = (data) => {
   return {
+    "id": data.student_id,
     "name": data.student_name,
     "nickname": data.student_nickname
   }
