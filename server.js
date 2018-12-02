@@ -12,7 +12,7 @@ const app      = express()
 const port        = process.env.PORT || 3000
 const db          = require('./db/app.js')
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://randomizd.herokuapp.com/',
   optionsSuccessStatus: 200
 }
 
